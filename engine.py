@@ -24,7 +24,7 @@ def gui_app():
         [sg.Text(
             'Reach me out: kawesolo@amazon.pl')],
     ]
-    window = sg.Window('Amazon_Fast_Launch ver. 1.0', layout,
+    window = sg.Window('Amazon_Fast_Launch ver. 1.2', layout,
                        element_justification='c')
 
     while True:
@@ -92,14 +92,19 @@ class FastLaunch:
 
     def iter_tcorp_rows(self):
         for idx, row in self.df_tcorp.iterrows():
-            if str('NR') in str(row["Title"]):
+            if str('NR') in str(row["Title"]) \
+                    and (str('no action needed') not in str(row["RootCause"]).lower() \
+                    and str('no changes needed') not in str(row["RootCause"]).lower() \
+                    and str('merged') not in str(row["RootCauseDetails"]).lower()):
                 if str(':/') in str(row["Title"]):
                     rule_name = str(row["Title"]).split(":/")
                     self.newrule_list.append(str('/') + rule_name[1])
                 else:
                     self.newrule_list.append(row["Title"])
-            else:
-                if str(':/') in str(row["Title"]):
+            elif (str('no action needed') not in str(row["RootCause"]).lower() \
+                    and str('no changes needed') not in str(row["RootCause"]).lower() \
+                    and str('merged') not in str(row["RootCauseDetails"]).lower()):
+                if str(':/') in str(row["Title"]) :
                     rule_name = str(row["Title"]).split(":/")
                     self.other_rules_list.append(str('/') + rule_name[1])
                 else:
@@ -125,6 +130,7 @@ class FastLaunch:
     def save_to_csv(self):
         df = pd.DataFrame(self.output)
         df.to_csv('To_Launch.csv', index=False, header=False)
+        self.output = []
 
 
 gui_app()
