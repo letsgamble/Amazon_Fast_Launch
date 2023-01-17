@@ -33,4 +33,4 @@ Output will be saved in 'To_launch.csv'.
 Python, Pandas
 
 ################### Source Code ###################
-https://github.com/letsgamble/Syntax_BeautifierBLR
+https://github.com/letsgamble/Amazon_Fast_Launch
