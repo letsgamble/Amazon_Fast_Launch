@@ -32,5 +32,8 @@ Output will be saved in 'To_launch.csv'.
 ################ Technology Stacks ################
 Python, Pandas
 
+#################### Compile ######################
+pyinstaller --onefile --icon=engine.ico --noconsole engine.py
+
 ################### Source Code ###################
 https://github.com/letsgamble/Amazon_Fast_Launch
