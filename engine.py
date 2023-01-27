@@ -92,16 +92,7 @@ class FastLaunch:
 
     def iter_tcorp_rows(self):
         for idx, row in self.df_tcorp.iterrows():
-            if str('NR') in str(row["Title"]) \
-                    and (str('no action needed') not in str(row["RootCause"]).lower() \
-                    and str('no changes needed') not in str(row["RootCause"]).lower() \
-                    and str('merged') not in str(row["RootCauseDetails"]).lower()):
-                if str(':/') in str(row["Title"]):
-                    rule_name = str(row["Title"]).split(":/")
-                    self.newrule_list.append(str('/') + rule_name[1])
-                else:
-                    self.newrule_list.append(row["Title"])
-            elif (str('no action needed') not in str(row["RootCause"]).lower() \
+            if (str('no action needed') not in str(row["RootCause"]).lower() \
                     and str('no changes needed') not in str(row["RootCause"]).lower() \
                     and str('merged') not in str(row["RootCauseDetails"]).lower()):
                 if str(':/') in str(row["Title"]) :
@@ -112,13 +103,6 @@ class FastLaunch:
 
     def look_in_dataframes(self):
         all_to_launch = []
-        for val in self.newrule_list:
-            for df in self.df_list:
-                to_launch = df.loc[df['child_class'] == val, 'parent_class']
-                all_to_launch.append(val)
-                if len(to_launch) > 0:
-                    val_to_extend = to_launch.tolist()
-                    all_to_launch.extend(val_to_extend)
         for val in self.other_rules_list:
             for df in self.df_list:
                 to_launch = df.loc[df['child_class'] == val, 'parent_class']

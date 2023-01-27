@@ -1,5 +1,5 @@
 ##################### Version #####################
-1.2 - Beta Version
+1.3 - Beta Version
 
 ##################### Author ######################
 @kawesolo
@@ -11,8 +11,6 @@ Parent Classes based on provided Child
 Classes list.
 
 ##################### Features #####################
--Recognizing New Rules (NR) based on
-'Title' column
 -Recognizing 'no action needed' and
 'no chanages needed' based on
 'Root Cause' column
